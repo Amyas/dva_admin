@@ -10,7 +10,11 @@ module.exports = {
       ]
     },
     production: {
-      extraBabelPlugins: ["transform-runtime"]
+      extraBabelPlugins: [
+        "transform-runtime",
+        ["import", { libraryName: "antd", style: "css" }],
+        ["transform-decorators-legacy"]
+      ]
     }
   }
 };

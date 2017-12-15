@@ -7,6 +7,7 @@ import { Layout, Menu, Icon } from "antd";
 const { Header, Sider, Content } = Layout;
 import dynamic from "dva/dynamic";
 
+const error = () => <div>123</div>;
 class AppLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -85,6 +86,7 @@ class AppLayout extends React.Component {
           <Content
             style={{
               margin: "24px 16px",
+              padding: "24px",
               background: "#fff",
               minHeight: 280
             }}
