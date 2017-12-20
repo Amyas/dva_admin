@@ -1,6 +1,8 @@
 import request from "../../utils/request";
-export function query() {
+export function login(params) {
   return request({
-    url: "/api/users"
+    method: "POST",
+    url: "admin//login/login",
+    params
   });
 }

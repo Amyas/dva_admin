@@ -2,19 +2,24 @@ import React from "react";
 import { connect } from "dva";
 import { routerRedux } from "dva/router";
 import styles from "./styles.less";
+import md5 from "blueimp-md5";
 
 import { Icon, Form, Input, InputNumber, Button } from "antd";
 const FormItem = Form.Item;
 
-@connect(() => ({}))
+@connect(state => ({ login: state.login }))
 @Form.create()
 export default class Login extends React.Component {
+  state = {
+    user: {}
+  };
   componentWillMount() {
     window.localStorage.clear();
   }
   componentWillReceiveProps(nextProps) {
     const { dispatch } = this.props;
-    if (window.localStorage.getItem("user")) {
+    const user = window.localStorage.getItem("user");
+    if (user) {
       dispatch(routerRedux.push("/"));
     }
   }
@@ -24,11 +29,13 @@ export default class Login extends React.Component {
       if (errors) {
         return;
       }
+      values["pass"] = md5(values["pass"]);
       dispatch({ type: "login/login", payload: values });
     });
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { user } = this.state;
     return (
       <div className={styles.box}>
         <div className={styles.form}>
@@ -39,7 +46,8 @@ export default class Login extends React.Component {
           </div>
           <Form>
             <FormItem hasFeedback>
-              {getFieldDecorator("username", {
+              {getFieldDecorator("user", {
+                initialValue: "1",
                 rules: [
                   {
                     required: true,
@@ -53,7 +61,8 @@ export default class Login extends React.Component {
               })(<Input placeholder="请输入手机号码" />)}
             </FormItem>
             <FormItem hasFeedback>
-              {getFieldDecorator("password", {
+              {getFieldDecorator("pass", {
+                initialValue: "1",
                 rules: [
                   {
                     required: true,

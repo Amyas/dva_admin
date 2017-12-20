@@ -1,8 +1,15 @@
 import React from "react";
 import { Router, Route, Switch, Redirect } from "dva/router";
 import dynamic from "dva/dynamic";
+import { Spin } from "antd";
 
 import AppLayout from "./layout/AppLayout";
+
+dynamic.setDefaultLoadingComponent(() => {
+  return (
+    <Spin size="large" style={{ width: "100%", margin: "40px 0 !important" }} />
+  );
+});
 
 const routes = {
   app: [
@@ -12,6 +19,13 @@ const routes = {
       side: true,
       models: () => [import("./models/app/dashboard")],
       component: () => import("./routes/App/Dashboard")
+    },
+    {
+      name: "分类管理",
+      path: "/classify",
+      side: true,
+      models: () => [import("./models/app/classify")],
+      component: () => import("./routes/App/Classify")
     },
     {
       name: "产品管理",
