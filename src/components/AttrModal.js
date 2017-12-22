@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Input, Radio } from "antd";
+import { Modal, Form, Input, Radio, Tag } from "antd";
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 
@@ -76,7 +76,7 @@ export default class AttrModal extends React.Component {
                   message: "请选择属性名称"
                 }
               ]
-            })(<Input />)}
+            })(getFieldValues)}
           </FormItem>
         </Form>
       </Modal>
