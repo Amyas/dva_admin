@@ -43,7 +43,7 @@ export default class Classify extends React.Component {
           isEdit = "edit";
         }
         dispatch({
-          type: `classify/${isEdit}Classify`,
+          type: `classify/${isEdit}Item`,
           payload: data
         });
       },
@@ -91,7 +91,7 @@ export default class Classify extends React.Component {
                 title="确定删除?"
                 onConfirm={e => {
                   dispatch({
-                    type: "classify/delClassify",
+                    type: "classify/delItem",
                     payload: {
                       type_id: record.id
                     }

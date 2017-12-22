@@ -41,7 +41,7 @@ export default {
         }
       });
     },
-    *addClassify({ payload }, { call, put }) {
+    *addItem({ payload }, { call, put }) {
       yield call(classifyServers.addClassify, payload);
       yield put({
         type: "query"
@@ -50,7 +50,7 @@ export default {
         type: "hideModal"
       });
     },
-    *editClassify({ payload }, { call, put }) {
+    *editItem({ payload }, { call, put }) {
       yield call(classifyServers.editClassify, payload);
       yield put({
         type: "query"
@@ -59,8 +59,7 @@ export default {
         type: "hideModal"
       });
     },
-    *delClassify({ payload }, { call, put }) {
-      console.log(payload);
+    *delItem({ payload }, { call, put }) {
       yield call(classifyServers.delClassify, payload);
       yield put({
         type: "query"

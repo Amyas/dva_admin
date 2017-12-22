@@ -1,3 +1,4 @@
+import * as commonServers from "../services/common";
 import { routerRedux } from "dva/router";
 export default {
   namespace: "common",

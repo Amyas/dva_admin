@@ -14,7 +14,6 @@ const fetch = options => {
     params.user_id = user.id;
     params.token = user.token;
   }
-
   switch (method.toUpperCase()) {
     case "GET":
       return axios.get(url, { params });
