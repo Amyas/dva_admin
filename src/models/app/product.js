@@ -4,7 +4,7 @@ export default {
   state: {
     list: [],
     current_page: 1,
-    total: null,
+    total: 10,
     modalVisible: false,
     currentItem: null, //当前元素
     classifyList: [], //分类列表

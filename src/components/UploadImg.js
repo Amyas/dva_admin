@@ -3,10 +3,6 @@ import { Upload } from "antd";
 import axios from "axios";
 
 export default class UploadImg extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   customRequest(img) {
     const { type } = this.props;
     const user = JSON.parse(window.localStorage.getItem("user"));
@@ -25,9 +21,6 @@ export default class UploadImg extends React.Component {
       .then(response => {
         const imageUrl = response.data.data.img;
         this.triggerChange(imageUrl);
-        this.setState({
-          imageUrl
-        });
       });
   }
   triggerChange(changedValue) {
@@ -37,7 +30,7 @@ export default class UploadImg extends React.Component {
     }
   }
   render() {
-    const { imageUrl } = this.state;
+    const { value: imageUrl } = this.props;
     const uploadButton = (
       <div>
         <div className="ant-upload-text">点击上传图片</div>

@@ -147,7 +147,7 @@ export default class Node extends React.Component {
               <Select>
                 {guigeList.map(v => (
                   <Option key={v.id} value={v.id}>
-                    1{v.name}
+                    {v.name}
                   </Option>
                 ))}
               </Select>
@@ -155,7 +155,7 @@ export default class Node extends React.Component {
           </FormItem>
           <FormItem label="商品属性" hasFeedback {...formItemLayout}>
             {getFieldDecorator("attr", {
-              initialValue: item.attr ? JSON.parse(item.attr) : null
+              initialValue: item.attr ? item.attr : null
             })(<ProductAttr />)}
           </FormItem>
         </Form>

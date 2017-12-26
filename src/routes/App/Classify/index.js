@@ -108,7 +108,11 @@ export default class Classify extends React.Component {
 
     return (
       <div>
-        <Button type="primary" onClick={this.createClassify.bind(this)}>
+        <Button
+          type="primary"
+          style={{ marginBottom: 24 }}
+          onClick={this.createClassify.bind(this)}
+        >
           创建分类
         </Button>
         {modalVisible && <Modal modalProps={modalProps} />}

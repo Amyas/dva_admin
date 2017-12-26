@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "dva";
 import { Table, Pagination, Card } from "antd";
 
-export default function Node({ columns, data, loading, total, current_page }) {
+function Node({ columns, data, loading, total, current_page, dispatch }) {
   return (
     <div>
       <Table
@@ -12,30 +13,20 @@ export default function Node({ columns, data, loading, total, current_page }) {
         pagination={false}
         expandedRowRender={record => {
           const attr = JSON.parse(record.attr);
-          attr.push(
-            {
-              classify: "123",
-              list: ["123", "123", "123"],
-              type: "check"
-            },
-            {
-              classify: "123",
-              list: ["123", "123", "123"],
-              type: "check"
-            }
-          );
           return (
             <div>
-              <p style={{}}>
+              <div style={{ marginBottom: 10 }}>
                 <h4>商品详情：</h4>
                 {record.content}
-              </p>
+              </div>
               <h4>商品属性：</h4>
               <div style={{ display: "flex", justifyContent: "flex-start" }}>
                 {attr.map((v, i) => (
                   <Card
                     key={i}
-                    title={v.classify}
+                    title={`${v.classify}(${
+                      v.type === "check" ? "复选" : "单选"
+                    })`}
                     style={{ width: 300, marginRight: 10 }}
                   >
                     {v.list.map((e, j) => (
@@ -49,12 +40,12 @@ export default function Node({ columns, data, loading, total, current_page }) {
         }}
       />
       <Pagination
-        style={{ margin: "30px 0" }}
-        total={total}
-        current={current_page}
+        style={{ display: "flex", justifyContent: "center", margin: "30px 0" }}
+        total={Number(total)}
+        current={Number(current_page)}
         onChange={page => {
           dispatch({
-            type: "users/query",
+            type: "product/query",
             payload: { page }
           });
         }}
@@ -62,3 +53,5 @@ export default function Node({ columns, data, loading, total, current_page }) {
     </div>
   );
 }
+
+export default connect(() => ({}))(Node);

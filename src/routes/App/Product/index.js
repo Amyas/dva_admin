@@ -29,7 +29,7 @@ export default class Product extends React.Component {
   render() {
     const {
       dispatch,
-      product: { list, modalVisible, currentItem },
+      product: { list, modalVisible, currentItem, total, current_page },
       loading
     } = this.props;
     // 弹框参数
@@ -42,8 +42,11 @@ export default class Product extends React.Component {
       onOk: data => {
         let isEdit = "add";
         if (currentItem && currentItem.id) {
-          data.type_id = currentItem.id;
+          data.goods_id = currentItem.id;
           isEdit = "edit";
+        }
+        if (data.attr === undefined || data.attr === null) {
+          data.attr = "[]";
         }
         dispatch({
           type: `product/${isEdit}Item`,
@@ -62,6 +65,8 @@ export default class Product extends React.Component {
     const listProps = {
       data: list,
       loading: loading,
+      total: total,
+      current_page: current_page,
       columns: [
         {
           title: "ID",
@@ -90,7 +95,7 @@ export default class Product extends React.Component {
         },
         {
           title: "商品规格",
-          dataIndex: "guige"
+          dataIndex: "guige_name"
         },
         {
           title: "操作",
@@ -115,9 +120,9 @@ export default class Product extends React.Component {
                 title="确定删除?"
                 onConfirm={e => {
                   dispatch({
-                    type: "product/delClassify",
+                    type: "product/delItem",
                     payload: {
-                      type_id: record.id
+                      goods_id: record.id
                     }
                   });
                 }}
@@ -132,7 +137,11 @@ export default class Product extends React.Component {
 
     return (
       <div>
-        <Button type="primary" onClick={this.createItem.bind(this)}>
+        <Button
+          type="primary"
+          style={{ marginBottom: 24 }}
+          onClick={this.createItem.bind(this)}
+        >
           创建产品
         </Button>
         {modalVisible && <Modal modalProps={modalProps} />}
