@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "dva";
 import UploadImg from "../../../../components/UploadImg";
-import ProductAttr from '../../../../components/ProductAttr'
+import ProductAttr from "../../../../components/ProductAttr";
 import {
   Form,
   Modal,
@@ -26,6 +26,9 @@ export default class Node extends React.Component {
     dispatch({
       type: "product/queryClassifyList"
     });
+    dispatch({
+      type: "product/queryGuigeList"
+    });
   }
   handleOk = () => {
     const { form: { validateFields }, modalProps: { onOk } } = this.props;
@@ -48,7 +51,7 @@ export default class Node extends React.Component {
       modalProps,
       form: { getFieldDecorator, validateFields, getFieldsValue },
       dispatch,
-      product: { classifyList }
+      product: { classifyList, guigeList }
     } = this.props;
     const modalOpts = {
       ...modalProps,
@@ -142,9 +145,9 @@ export default class Node extends React.Component {
               ]
             })(
               <Select>
-                {classifyList.map(v => (
+                {guigeList.map(v => (
                   <Option key={v.id} value={v.id}>
-                    {v.name}
+                    1{v.name}
                   </Option>
                 ))}
               </Select>
@@ -152,13 +155,7 @@ export default class Node extends React.Component {
           </FormItem>
           <FormItem label="商品属性" hasFeedback {...formItemLayout}>
             {getFieldDecorator("attr", {
-              initialValue: item.attr,
-              rules: [
-                {
-                  required: true,
-                  message: "请输入商品属性！"
-                }
-              ]
+              initialValue: item.attr ? JSON.parse(item.attr) : null
             })(<ProductAttr />)}
           </FormItem>
         </Form>

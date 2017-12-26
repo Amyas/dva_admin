@@ -23,7 +23,6 @@ class AppLayout extends React.Component {
     });
   };
   componentWillMount() {
-    console.log();
     const { pathname } = this.props.location;
     if (pathname === "/") {
       this.props.dispatch(

@@ -40,7 +40,7 @@ export default class UploadImg extends React.Component {
     const { imageUrl } = this.state;
     const uploadButton = (
       <div>
-        <div className="ant-upload-text">Upload</div>
+        <div className="ant-upload-text">点击上传图片</div>
       </div>
     );
     return (
@@ -53,7 +53,11 @@ export default class UploadImg extends React.Component {
           this.customRequest(e.file);
         }}
       >
-        {imageUrl ? <img src={imageUrl} alt="" /> : uploadButton}
+        {imageUrl ? (
+          <img style={{ width: 100, height: 100 }} src={imageUrl} alt="" />
+        ) : (
+          uploadButton
+        )}
       </Upload>
     );
   }

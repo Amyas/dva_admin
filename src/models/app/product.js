@@ -6,8 +6,9 @@ export default {
     current_page: 1,
     total: null,
     modalVisible: false,
-    currentItem: null,
-    classifyList: []
+    currentItem: null, //当前元素
+    classifyList: [], //分类列表
+    guigeList: [] //规格列表
   },
   reducers: {
     showModal(state, { payload }) {
@@ -37,6 +38,12 @@ export default {
       return {
         ...state,
         classifyList
+      };
+    },
+    updateGuige(state, { payload: guigeList }) {
+      return {
+        ...state,
+        guigeList
       };
     }
   },
@@ -84,6 +91,13 @@ export default {
       yield put({
         type: "updateClassify",
         payload: classifyList
+      });
+    },
+    *queryGuigeList({ payload }, { call, put }) {
+      const guigeList = yield call(productServers.queryGuigeList);
+      yield put({
+        type: "updateGuige",
+        payload: guigeList
       });
     }
   },

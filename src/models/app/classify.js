@@ -42,7 +42,7 @@ export default {
       });
     },
     *addItem({ payload }, { call, put }) {
-      yield call(classifyServers.addClassify, payload);
+      yield call(classifyServers.addItem, payload);
       yield put({
         type: "query"
       });
@@ -51,7 +51,7 @@ export default {
       });
     },
     *editItem({ payload }, { call, put }) {
-      yield call(classifyServers.editClassify, payload);
+      yield call(classifyServers.editItem, payload);
       yield put({
         type: "query"
       });
@@ -60,7 +60,7 @@ export default {
       });
     },
     *delItem({ payload }, { call, put }) {
-      yield call(classifyServers.delClassify, payload);
+      yield call(classifyServers.delItem, payload);
       yield put({
         type: "query"
       });

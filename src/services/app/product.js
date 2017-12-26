@@ -33,3 +33,10 @@ export function queryClassifyList(params) {
     params
   });
 }
+export function queryGuigeList(params) {
+  return request({
+    method: "POST",
+    url: "admin/guige/index",
+    params
+  });
+}

@@ -46,7 +46,7 @@ export default class Product extends React.Component {
           isEdit = "edit";
         }
         dispatch({
-          type: `product/${isEdit}Classify`,
+          type: `product/${isEdit}Item`,
           payload: data
         });
       },
@@ -69,7 +69,7 @@ export default class Product extends React.Component {
         },
         {
           title: "名称",
-          dataIndex: "name"
+          dataIndex: "title"
         },
         {
           title: "图片",
@@ -87,10 +87,6 @@ export default class Product extends React.Component {
         {
           title: "所属分类",
           dataIndex: "type_name"
-        },
-        {
-          title: "商品属性",
-          dataIndex: "attr"
         },
         {
           title: "商品规格",
@@ -139,7 +135,7 @@ export default class Product extends React.Component {
         <Button type="primary" onClick={this.createItem.bind(this)}>
           创建产品
         </Button>
-        {modalVisible && <Modal modalProps={modalProps} dispatch={dispatch} />}
+        {modalVisible && <Modal modalProps={modalProps} />}
         <List {...listProps} />
       </div>
     );
