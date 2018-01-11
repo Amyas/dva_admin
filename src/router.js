@@ -33,6 +33,13 @@ const routes = {
       side: true,
       models: () => [import("./models/app/product")],
       component: () => import("./routes/App/Product")
+    },
+    {
+      name: "订单管理",
+      path: "/orders",
+      side: true,
+      models: () => [import("./models/app/orders")],
+      component: () => import("./routes/App/Orders")
     }
   ]
 };
