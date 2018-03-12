@@ -71,22 +71,26 @@ export default class Orders extends React.Component {
                     title: "状态",
                     render: (record) => {
                         let status = '';
+                        let active = '';
                         switch (record.status) {
                             case 0:
-                                status = "已付款未完成"
+                                status = '已付款未完成'
+                                active = 'gold'
                                 break;
                             case 1:
-                                status = "订单已完成"
+                                status = '订单已完成'
+                                active = 'green'
                                 break;
                             case 3:
-                                status = "未付款"
+                                status = '未付款'
+                                active = 'red'
                                 break;
                             default:
                                 state = record.status
                                 break;
 
                         }
-                        return status
+                        return <span style={{ color: active }} >{status}</ span>
                     }
                 },
             ]
